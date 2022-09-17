@@ -12,4 +12,8 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KTPO4311.Gaifullin.Lib\KTPO4311.Gaifullin.Lib.csproj" />
+  </ItemGroup>
+
 </Project>
