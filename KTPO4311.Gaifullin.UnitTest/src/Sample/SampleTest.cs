@@ -9,6 +9,5 @@ namespace KTPO4311.Gaifullin.UnitTest.src.Sample
         {
             Assert.Pass();
         }
-
     }
 }
