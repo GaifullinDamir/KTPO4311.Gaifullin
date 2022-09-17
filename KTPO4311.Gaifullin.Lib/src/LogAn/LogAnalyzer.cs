@@ -2,17 +2,21 @@
 {
     public class LogAnalyzer
     {
+
+        public bool WasLastFileNameIsValid { get; set; }
         public bool IsValidLogFileName(string fileName)
         {
-            if(string.IsNullOrEmpty(fileName))
+            WasLastFileNameIsValid = false;
+            if (string.IsNullOrEmpty(fileName))
             {
                 throw new ArgumentException("Имя файла должно быть задано.");
             }
-            if(fileName.EndsWith(".GDR", StringComparison.CurrentCultureIgnoreCase))
+            if (!fileName.EndsWith(".GDR", StringComparison.CurrentCultureIgnoreCase))
             {
-                return true;
+                return false;
             }
-            return false;
+            WasLastFileNameIsValid = true;
+            return true;
         }
     }
 }

@@ -43,5 +43,15 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
 
             StringAssert.Contains("Имя файла должно быть задано", ex.Message);
         }
+        [TestCase("badfile.foo", false)]
+        [TestCase("goodfile.gdr", true)]
+        public void IsValidFileName_WhenCalled_ChangesWasLastFilenameValid(string file, bool expected)
+        {
+            LogAnalyzer analyzer = new LogAnalyzer();
+            analyzer.IsValidLogFileName(file);
+            Assert.AreEqual(expected, analyzer.WasLastFileNameIsValid);
+        }
+
+
     }
 }
