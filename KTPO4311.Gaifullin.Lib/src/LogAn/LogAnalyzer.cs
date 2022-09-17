@@ -4,11 +4,15 @@
     {
         public bool IsValidLogFileName(string fileName)
         {
-            if(fileName.EndsWith(".GDR"))
+            if(string.IsNullOrEmpty(fileName))
             {
-                return false;
+                throw new ArgumentException("Имя файла должно быть задано.");
             }
-            return true;
+            if(fileName.EndsWith(".GDR", StringComparison.CurrentCultureIgnoreCase))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
