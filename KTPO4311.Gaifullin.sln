@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPO4311.Gaifullin.UnitTest", "KTPO4311.Gaifullin.UnitTest\KTPO4311.Gaifullin.UnitTest.csproj", "{3782E5E6-E4D4-4319-9C19-C6F40B119B0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3782E5E6-E4D4-4319-9C19-C6F40B119B0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3782E5E6-E4D4-4319-9C19-C6F40B119B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3782E5E6-E4D4-4319-9C19-C6F40B119B0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3782E5E6-E4D4-4319-9C19-C6F40B119B0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8F5AE2C-CAB7-41AF-B2E6-776281A0BB12}
+	EndGlobalSection
+EndGlobal
