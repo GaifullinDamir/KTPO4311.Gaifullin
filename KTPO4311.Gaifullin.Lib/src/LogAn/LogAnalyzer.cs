@@ -5,17 +5,17 @@
     /// </summary>
     public class LogAnalyzer
     {
-        IExtensionManager mrg;
-        public LogAnalyzer()
+        private readonly IExtensionManager _mrg;
+        public LogAnalyzer(IExtensionManager mrg)
         {
-            mrg = new FileExtensionManager();
+            _mrg = mrg;
         }
         /// <summary>
         /// Проверка правильности имени файла
         /// </summary>
         public bool IsValidLogFileName(string fileName)
         {
-            return mrg.IsValid(fileName);
+            return _mrg.IsValid(fileName);
         }
     }
 }
