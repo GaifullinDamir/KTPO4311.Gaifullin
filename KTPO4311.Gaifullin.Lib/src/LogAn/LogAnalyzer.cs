@@ -5,15 +5,17 @@
     /// </summary>
     public class LogAnalyzer
     {
+        IExtensionManager mrg;
+        public LogAnalyzer()
+        {
+            mrg = new FileExtensionManager();
+        }
         /// <summary>
         /// Проверка правильности имени файла
         /// </summary>
         public bool IsValidLogFileName(string fileName)
         {
-            //читать конфигурационный файл
-            //вернуть true
-            //если конфигурация поддерживается
-            return true;
+            return mrg.IsValid(fileName);
         }
     }
 }
