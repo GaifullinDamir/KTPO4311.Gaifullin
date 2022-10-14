@@ -11,8 +11,10 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
             FakeExtensionManager fakeManager = new FakeExtensionManager();
             fakeManager.WillBeValid = true;
 
-            LogAnalyzer log = new LogAnalyzer(fakeManager);
+            //Кофнигурируем фабрику для создания поддельных объектов
+            ExtensionManagerFactory.SetManager(fakeManager);
 
+            LogAnalyzer log = new LogAnalyzer();
             //Воздействие на тестируемый объект
             bool result = log.IsValidLogFileName("short.gdr");
 
@@ -25,8 +27,8 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
         {
             FakeExtensionManager fakeManager = new FakeExtensionManager();
             fakeManager.WillBeValid = false;
-
-            LogAnalyzer log = new LogAnalyzer(fakeManager);
+            ExtensionManagerFactory.SetManager(fakeManager);
+            LogAnalyzer log = new LogAnalyzer();
 
             //Воздействие на тестируемый объект
             bool result = log.IsValidLogFileName("long.gdr");
@@ -42,14 +44,20 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
             FakeExtensionManager fakeManager = new FakeExtensionManager();
             fakeManager.WillBeValid = false;
             fakeManager.WillThrow = new Exception();
-
-            LogAnalyzer log = new LogAnalyzer(fakeManager);
+            ExtensionManagerFactory.SetManager(fakeManager);
+            LogAnalyzer log = new LogAnalyzer();
 
             //Воздействие на тестируемый объект
             bool result = log.IsValidLogFileName("short.gdr");
 
             //Проверка ожидаемого результата
             Assert.False(result);
+        }
+
+        [TearDown] 
+        public void AfterEachTest()
+        {
+            ExtensionManagerFactory.SetManager(null);
         }
     }
 

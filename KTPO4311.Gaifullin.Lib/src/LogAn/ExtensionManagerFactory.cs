@@ -16,7 +16,7 @@ namespace KTPO4311.Gaifullin.Lib.src.LogAn
         ///<summary>Создание объектов </summary>
         public static IExtensionManager Create()
         {
-            if(customManager == null)
+            if(customManager != null)
             {
                 return customManager;
             }
