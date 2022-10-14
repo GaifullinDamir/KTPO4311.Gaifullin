@@ -58,6 +58,7 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
         public void AfterEachTest()
         {
             ExtensionManagerFactory.SetManager(null);
+            WebServiceFactory.SetService(null);
         }
     }
 
