@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPO4311.Gaifullin.UnitTest", "KTPO4311.Gaifullin.UnitTest\KTPO4311.Gaifullin.UnitTest.csproj", "{3782E5E6-E4D4-4319-9C19-C6F40B119B0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTPO4311.Gaifullin.UnitTest", "KTPO4311.Gaifullin.UnitTest\KTPO4311.Gaifullin.UnitTest.csproj", "{3782E5E6-E4D4-4319-9C19-C6F40B119B0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPO4311.Gaifullin.Lib", "KTPO4311.Gaifullin.Lib\KTPO4311.Gaifullin.Lib.csproj", "{32497590-9427-471F-A91A-9482848BC3CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTPO4311.Gaifullin.Lib", "KTPO4311.Gaifullin.Lib\KTPO4311.Gaifullin.Lib.csproj", "{32497590-9427-471F-A91A-9482848BC3CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPO4311.Gaifullin.Service", "KTPO4311.Gaifullin.Service\KTPO4311.Gaifullin.Service.csproj", "{0688D018-0123-4D09-8D90-7F1A7B4CF37D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{32497590-9427-471F-A91A-9482848BC3CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32497590-9427-471F-A91A-9482848BC3CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32497590-9427-471F-A91A-9482848BC3CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0688D018-0123-4D09-8D90-7F1A7B4CF37D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0688D018-0123-4D09-8D90-7F1A7B4CF37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0688D018-0123-4D09-8D90-7F1A7B4CF37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0688D018-0123-4D09-8D90-7F1A7B4CF37D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

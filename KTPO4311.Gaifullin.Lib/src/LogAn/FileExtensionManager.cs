@@ -1,4 +1,6 @@
-﻿namespace KTPO4311.Gaifullin.Lib.src.LogAn
+﻿using System.Configuration;
+
+namespace KTPO4311.Gaifullin.Lib.src.LogAn
 {
     /// <summary>
     /// Менеджер расширений файлов
@@ -11,10 +13,12 @@
 
         public bool IsValid(string fileName)
         {
-            //читать конфигурационный файл
-            //вернуть true
-            //если конфигурация поддерживается
-            throw new NotImplementedException();
+            string configExtension = ConfigurationManager.AppSettings["goodExtension"];
+            if (fileName.EndsWith(configExtension))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
