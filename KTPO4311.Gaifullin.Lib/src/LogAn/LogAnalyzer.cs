@@ -14,9 +14,19 @@
         {
             if(fileName.Length < 8)
             {
-                //Передать внешней службе сообщение об ошибке
-                IWebService service = WebServiceFactory.Create();
-                service.LogError("Слишком короткое имя файла:" + fileName);
+                try
+                {
+                    //Передать внешней службе сообщение об ошибке
+                    IWebService service = WebServiceFactory.Create();
+                    service.LogError("Слишком короткое имя файла:" + fileName);
+                }
+                catch (Exception excep)
+                {
+                    //Отправить сообщение по электронной почте
+                    IEmailService emailService = EmailServiceFactory.Create();
+                    emailService.SendEmail("someone@somewhere.com", "Невозможно вызвать веб-сервис", excep.Message);
+                }
+                
             }
         }
     }

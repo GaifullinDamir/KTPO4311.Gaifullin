@@ -71,11 +71,38 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
                 mockWebService.LastError);
         }
 
+        [Test]
+        public void Analyze_WebServiceThrows_SendsEmail()
+        {
+            //Подготовка теста
+            FakeWebService stubWebService = new FakeWebService();
+            WebServiceFactory.SetWebService(stubWebService);
+            stubWebService.WillThrowWeb = new Exception("Это подделка");
+            
+            FakeEmailService mockEmail = new FakeEmailService();
+            EmailServiceFactory.SetEmailService(mockEmail);
+
+            LogAnalyzer log = new LogAnalyzer();
+            string tooShortFileName = "abc.gdr";
+
+            //Воздействие на тестируемый объект
+            log.Analyze(tooShortFileName);
+
+            //Проверка ожидаемого реультата
+            //...Здесь тест будет ложным, если неверно хотя бы одно утверждение
+            //...Поэтому здесь допустимо несколько утверждений
+            StringAssert.Contains("someone@somewhere.com", mockEmail.to);
+            StringAssert.Contains("Это подделка", mockEmail.body);
+            StringAssert.Contains("Невозможно вызвать веб-сервис", mockEmail.subject);
+
+        }
+
         [TearDown] 
         public void AfterEachTest()
         {
             ExtensionManagerFactory.SetManager(null);
             WebServiceFactory.SetWebService(null);
+            EmailServiceFactory.SetEmailService(null);
         }
     }
 
@@ -109,9 +136,31 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
         /// <summary>Это поле запоминает состояние после вызова метода LogError
         /// при тестировании взаимодействия утверждения высказываются относительно</summary>
         public string LastError;
+        public Exception WillThrowWeb = null;
+
         public void LogError(string message)
         {
+            if(WillThrowWeb != null)
+            {
+                throw WillThrowWeb;
+            }
             LastError = message;
+        }
+    }
+    /// <summary>
+    /// Подддельная EMail - служба
+    /// </summary>
+    internal class FakeEmailService : IEmailService
+    {
+        ///<summary> Это поле запоминает состояние после вызова метода SendMail
+        ///при тестировании взаимодействия утверждения высказывается относительно</summary>
+        public string to, subject, body;
+
+        public void SendEmail(string to, string subject, string body)
+        {
+            this.to = to;
+            this.subject = subject;
+            this.body = body;
         }
     }
 }
