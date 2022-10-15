@@ -1,8 +1,7 @@
-﻿
-namespace KTPO4311.Gaifullin.Lib.src.LogAn
+﻿namespace KTPO4311.Gaifullin.Lib.src.LogAn
 {
     /// <summary>
-    /// Фабрика веб-сервисов
+    /// Фабрика веб-сервиса
     /// </summary>
     public static class WebServiceFactory
     {
@@ -17,7 +16,10 @@ namespace KTPO4311.Gaifullin.Lib.src.LogAn
             }
             return new WebService();
         }
-        public static void SetService(IWebService srvc)
+        ///<summary>Метод позволит тестам контролировать, 
+        ///что возвращает фабрика</summary>
+        ///<param name="srvc"></param>
+        public static void SetWebService(IWebService srvc)
         {
             customService = srvc;
         }

@@ -54,11 +54,28 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
             Assert.False(result);
         }
 
+        [Test]
+        public void Analyze_TooShortFileName_CallsWebService()
+        {
+            //Подготовка теста
+            FakeWebService mockWebService = new FakeWebService();
+            WebServiceFactory.SetWebService(mockWebService);
+            LogAnalyzer log = new LogAnalyzer();
+            string tooShortFileName = "abc.gdr";
+
+            //Воздействие на тестируемый объект
+            log.Analyze(tooShortFileName);
+
+            //Проверка ожидаемого результата
+            StringAssert.Contains("Слишком короткое имя файла:abc.gdr",
+                mockWebService.LastError);
+        }
+
         [TearDown] 
         public void AfterEachTest()
         {
             ExtensionManagerFactory.SetManager(null);
-            WebServiceFactory.SetService(null);
+            WebServiceFactory.SetWebService(null);
         }
     }
 
@@ -84,6 +101,17 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
                 return false;
             }
             return WillBeValid;
+        }
+    }
+    ///<summary>Поддельная веб-служба</summary>
+    internal class FakeWebService : IWebService
+    {
+        /// <summary>Это поле запоминает состояние после вызова метода LogError
+        /// при тестировании взаимодействия утверждения высказываются относительно</summary>
+        public string LastError;
+        public void LogError(string message)
+        {
+            LastError = message;
         }
     }
 }
