@@ -40,5 +40,63 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
             //Проверка ожидаемого результата
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public void IsValidFileName_ExtManagerThrowsException_ReturnFalse()
+        {
+            //Подготовка теста
+            IExtensionManager fakeManager = Substitute.For<IExtensionManager>();
+            fakeManager.When(x => x.IsValid(Arg.Any<string>()))
+               .Do(context => { throw new Exception("fake exception"); });
+
+            //Конфигурируем фабрику для создания поддельных объектов
+            ExtensionManagerFactory.SetManager(fakeManager);
+            LogAnalyzer log = new LogAnalyzer();
+            bool result = log.IsValidLogFileName("anything");
+
+            ////Проверка ожидаемого результата
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void Analyze_TooShortFileName_CallsWebService()
+        {
+            //Подготовка теста
+            IWebService mockWebService = Substitute.For<IWebService>();
+            WebServiceFactory.SetWebService(mockWebService);
+            LogAnalyzer log = new LogAnalyzer();
+            string tooShortFileName = "abc.gdr";
+
+            //Воздействие на тестируемый объект
+            log.Analyze(tooShortFileName);
+
+            //Проверка, что поддельный объект сохранил параметры вызова
+            mockWebService.Received().LogError("Слишком короткое имя файла:abc.gdr");
+        }
+
+        [Test]
+        public void Analyze_WebServiceThrows_SendsEmail()
+        {
+            //Подготовка теста
+            IWebService mockWebService = Substitute.For<IWebService>();
+            WebServiceFactory.SetWebService(mockWebService);
+            mockWebService.When(x => x.LogError(Arg.Any<string>()))
+                .Do(context => { throw new Exception("Это подделка"); });
+
+            IEmailService mockEmail = Substitute.For<IEmailService>();
+            EmailServiceFactory.SetEmailService(mockEmail);
+
+            LogAnalyzer log = new LogAnalyzer();
+            string tooShortFileName = "abc.gdr";
+
+            //Воздействие на тестируемый объект
+            log.Analyze(tooShortFileName);
+
+            //Проверка ожидаемого реультата
+            //...Здесь тест будет ложным, если неверно хотя бы одно утверждение
+            //...Поэтому здесь допустимо несколько утверждений
+            mockEmail.Received().SendEmail("someone@somewhere.com", "Это подделка", "Невозможно вызвать веб-сервис");
+
+        }
     }
 }

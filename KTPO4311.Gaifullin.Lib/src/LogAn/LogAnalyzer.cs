@@ -6,7 +6,14 @@
         /// <summary>Проверка правильности имени файла</summary>
         public bool IsValidLogFileName(string fileName)
         {
-            return ExtensionManagerFactory.Create().IsValid(fileName);
+            try
+            {
+                return ExtensionManagerFactory.Create().IsValid(fileName);
+            }
+            catch
+            {
+                return false;
+            }
         }
         ///<summary>Анализировать лог. файл</summary>
         ///<param name= "fileName"></param>
