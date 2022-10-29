@@ -37,5 +37,32 @@ namespace KTPO4311.Gaifullin.UnitTest.src.Sample
             //Проверка ожидаемого результата
             Assert.True(result);
         }
+
+        [Test]
+        public void Returns_ArgAny_Throws()
+        {
+            //Создать поддельный объект
+            IExtensionManager fakeExtensionManager = Substitute.For<IExtensionManager>();
+
+            //Настроить объект, чтобы методв ызвал исключение, независимо от входных аргументов
+            fakeExtensionManager.When(x => x.IsValid(Arg.Any<string>()))
+                .Do(context => { throw new Exception("fake exception"); });
+
+            //Проверка, что было вызвано исключение
+            Assert.Throws<Exception>(() => fakeExtensionManager.IsValid("anything"));
+        }
+
+        [Test]
+        public void Received_ParticularArg_Saves()
+        {
+            //Создать поддельный объект
+            IWebService mockWebService = Substitute.For<IWebService>();
+
+            //Воздействие на поддельный объект
+            mockWebService.LogError("Поддельное сообщение");
+
+            //Проверка, что поддельный объект сохранил параметры вызова
+            mockWebService.Received().LogError("Поддельное сообщение");
+        }
     }
 }
