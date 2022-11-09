@@ -95,7 +95,7 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
             //Проверка ожидаемого реультата
             //...Здесь тест будет ложным, если неверно хотя бы одно утверждение
             //...Поэтому здесь допустимо несколько утверждений
-            mockEmail.Received().SendEmail("someone@somewhere.com", "Это подделка", "Невозможно вызвать веб-сервис");
+            mockEmail.Received().SendEmail("someone@somewhere.com", "Невозможно вызвать веб-сервис", "Это подделка");
 
         }
     }

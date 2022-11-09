@@ -3,6 +3,9 @@
     /// <summary>Анализатор лог. файлов</summary>
     public class LogAnalyzer
     {
+        ///<summary>Объявление события</summary>
+        public event LogAnalyzerAction Analyzed = null;
+
         /// <summary>Проверка правильности имени файла</summary>
         public bool IsValidLogFileName(string fileName)
         {
@@ -19,6 +22,7 @@
         ///<param name= "fileName"></param>
         public void Analyze(string fileName)
         {
+            //Если имя слишком короткое
             if(fileName.Length < 8)
             {
                 try
@@ -35,6 +39,19 @@
                 }
                 
             }
+
+            //Обработка лога
+            //..
+
+            //Вызов события
+            if(Analyzed != null)
+            {
+                Analyzed();
+            }
+        }
+        protected void RaiseAnalyzedEvent()
+        {
+            Analyzed?.Invoke();
         }
     }
 }
