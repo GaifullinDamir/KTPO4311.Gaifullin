@@ -16,6 +16,16 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
             mockLog.CallRaiseAnalyzedEvent();
             view.Received().Render("Обработка завершена");
         }
+
+        [Test]
+        public void ctor_WhenAnalyzed_CallsViewRender_NSubstitute()
+        {
+            ILogAnalyzer stubLogAnalyzer = Substitute.For<ILogAnalyzer>();
+            IView view = Substitute.For<IView>();
+            Presenter presenter = new Presenter(stubLogAnalyzer, view);
+            stubLogAnalyzer.Analyzed += Raise.Event<Action>();
+
+        }
     }
 
     ///<summary>Заглушка для имитации вызова события</summary>

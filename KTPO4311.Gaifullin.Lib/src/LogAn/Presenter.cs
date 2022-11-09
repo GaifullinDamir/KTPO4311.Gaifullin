@@ -2,9 +2,9 @@
 {
     public class Presenter
     {
-        private LogAnalyzer logAnalyzer = null;
+        private ILogAnalyzer logAnalyzer = null;
         private IView view = null;
-        public Presenter(LogAnalyzer logAnalyzer, IView view)
+        public Presenter(ILogAnalyzer logAnalyzer, IView view)
         {
             this.logAnalyzer = logAnalyzer;
             this.view = view;
