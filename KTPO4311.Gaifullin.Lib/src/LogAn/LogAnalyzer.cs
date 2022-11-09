@@ -1,7 +1,7 @@
 ﻿namespace KTPO4311.Gaifullin.Lib.src.LogAn
 {
     /// <summary>Анализатор лог. файлов</summary>
-    public class LogAnalyzer
+    public class LogAnalyzer : ILogAnalyzer
     {
         ///<summary>Объявление события</summary>
         public event LogAnalyzerAction Analyzed = null;
@@ -23,7 +23,7 @@
         public void Analyze(string fileName)
         {
             //Если имя слишком короткое
-            if(fileName.Length < 8)
+            if (fileName.Length < 8)
             {
                 try
                 {
@@ -37,14 +37,14 @@
                     IEmailService emailService = EmailServiceFactory.Create();
                     emailService.SendEmail("someone@somewhere.com", "Невозможно вызвать веб-сервис", excep.Message);
                 }
-                
+
             }
 
             //Обработка лога
             //..
 
             //Вызов события
-            if(Analyzed != null)
+            if (Analyzed != null)
             {
                 Analyzed();
             }
