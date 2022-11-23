@@ -23,8 +23,9 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
             ILogAnalyzer stubLogAnalyzer = Substitute.For<ILogAnalyzer>();
             IView view = Substitute.For<IView>();
             Presenter presenter = new Presenter(stubLogAnalyzer, view);
-            stubLogAnalyzer.Analyzed += Raise.Event<Action>();
+            stubLogAnalyzer.Analyzed += Raise.Event<LogAnalyzerAction>();
 
+            view.Received().Render("Обработка завершена");
         }
     }
 

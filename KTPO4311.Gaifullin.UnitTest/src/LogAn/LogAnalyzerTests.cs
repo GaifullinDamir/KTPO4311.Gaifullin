@@ -97,6 +97,27 @@ namespace KTPO4311.Gaifullin.UnitTest.src.LogAn
 
         }
 
+        [Test]
+        public void Analyze_WhenAnalyzed_FiredEvent()
+        {
+            //Подготовка теста
+            bool analyzedFired = false;
+
+            LogAnalyzer logAnalyzer = new LogAnalyzer();
+
+            //..используем анонимный метод в качестве обработчика события
+            logAnalyzer.Analyzed += delegate ()
+            {
+                analyzedFired = true;
+            };
+
+            //Воздействие на тестируемый объект
+            logAnalyzer.Analyze("validfilename.gdr");
+
+            //Проверка ожидаемого результата
+            Assert.IsTrue(analyzedFired);
+        }
+
         [TearDown] 
         public void AfterEachTest()
         {

@@ -49,6 +49,8 @@
                 Analyzed();
             }
         }
+
+
         protected void RaiseAnalyzedEvent()
         {
             Analyzed?.Invoke();
