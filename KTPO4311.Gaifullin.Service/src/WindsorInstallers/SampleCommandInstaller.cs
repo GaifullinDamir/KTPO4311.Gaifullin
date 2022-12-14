@@ -10,7 +10,8 @@ namespace KTPO4311.Gaifullin.Service.src.WindsorInstallers
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<ISampleCommand>().ImplementedBy<SecondCommand>().LifeStyle.Singleton
+                Component.For<ISampleCommand>().ImplementedBy<SampleCommandDecorator>().LifeStyle.Singleton,
+                Component.For<ISampleCommand>().ImplementedBy<FirstCommand>().LifeStyle.Singleton
                 );
         }
     }

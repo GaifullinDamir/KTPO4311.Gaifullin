@@ -16,6 +16,7 @@ namespace KTPO4311.Gaifullin.Lib.src.SampleCommands
         {
             iExecute++;
             _view.Render(this.GetType().ToString() + "\n iExecute = " + iExecute);
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -8,6 +8,7 @@ CastleFactory.container.Install(
     new ViewInstaller()
     );
 
+
 for (int i = 0; i < 3; i++)
 {
     ISampleCommand someCommand = CastleFactory.container.Resolve<ISampleCommand>();
