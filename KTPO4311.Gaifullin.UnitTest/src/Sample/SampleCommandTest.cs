@@ -11,13 +11,13 @@ namespace KTPO4311.Gaifullin.UnitTest.src.Sample
         [Test]
         public void FirstCommand_Execute_IsValidText()
         {
-            IView fakeView = Substitute.For<IView>();
-            FirstCommand firstCommand = new FirstCommand(fakeView);
+            IView mockView = Substitute.For<IView>();
+            FirstCommand firstCommand = new FirstCommand(mockView);
 
             firstCommand.Execute();
             int iExecute = 1;
 
-            fakeView.Received().Render(firstCommand.GetType().ToString() + "\n iExecute = " + iExecute);
+            mockView.Received().Render(firstCommand.GetType().ToString() + "\n iExecute = " + iExecute);
         }
 
         [Test]
