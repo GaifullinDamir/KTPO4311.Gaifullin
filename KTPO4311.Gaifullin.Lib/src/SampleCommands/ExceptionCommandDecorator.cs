@@ -18,7 +18,7 @@ namespace KTPO4311.Gaifullin.Lib.src.SampleCommands
             {
                 _sampleCommand.Execute();
             }
-            finally
+            catch
             {
                 _view.Render("Перехват исключений: " + this.GetType().ToString());
             }

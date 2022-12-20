@@ -11,7 +11,8 @@ namespace KTPO4311.Gaifullin.Service.src.WindsorInstallers
         {
             container.Register(
                 Component.For<ISampleCommand>().ImplementedBy<SampleCommandDecorator>().LifeStyle.Singleton,
-                Component.For<ISampleCommand>().ImplementedBy<FirstCommand>().LifeStyle.Singleton
+                Component.For<ISampleCommand>().ImplementedBy<ExceptionCommandDecorator>().LifeStyle.Singleton,
+                Component.For<ISampleCommand>().ImplementedBy<SecondCommand>().LifeStyle.Singleton
                 );
         }
     }
